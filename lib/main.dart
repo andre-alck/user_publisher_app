@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:p_user_publisher/models/user.dart';
+import 'package:p_user_publisher/service/amqp_controller_service.dart';
 import 'package:p_user_publisher/service/database.dart';
 
 void main() {
@@ -22,14 +23,21 @@ class MyApp extends StatelessWidget {
       age: 19,
       name: 'André',
     );
+    final amqpControllerService = AMQPControllerService();
+
     return MaterialApp(
       title: 'User Publisher',
       home: Scaffold(
         appBar: AppBar(),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => database.populate(
-            user,
-          ),
+          onPressed: () {
+            database.populate(
+              user,
+            );
+            amqpControllerService.send(
+              user,
+            );
+          },
         ),
       ),
     );
