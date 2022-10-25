@@ -3,7 +3,7 @@ import 'package:p_user_publisher/models/user.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class Database {
+class DatabaseService {
   Future<void> populate(
     User user,
   ) async {
