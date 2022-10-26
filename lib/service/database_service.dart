@@ -30,4 +30,71 @@ class DatabaseService {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
+
+  Future<void> updateUser(
+    User user,
+  ) async {
+    WidgetsFlutterBinding.ensureInitialized();
+
+    final database = openDatabase(
+      join(
+        await getDatabasesPath(),
+        'user_database.db',
+      ),
+      version: 1,
+    );
+
+    final db = await database;
+
+    await db.update(
+      'user',
+      user.toMap(),
+      where: 'id=?',
+      whereArgs: [
+        user.id,
+      ],
+    );
+  }
+
+  Future<List<User>> listUsers() async {
+    final database = openDatabase(
+      join(
+        await getDatabasesPath(),
+        'user_database.db',
+      ),
+      version: 1,
+    );
+
+    final db = await database;
+
+    final List<Map<String, dynamic>> maps = await db.query(
+      'user',
+    );
+
+    return List.generate(
+      maps.length,
+      (i) {
+        return User(
+          id: maps[i]['id'],
+          name: maps[i]['name'],
+          age: maps[i]['age'],
+        );
+      },
+    );
+  }
+
+  Future<void> deleteUserTable() async {
+    final database = openDatabase(
+      join(
+        await getDatabasesPath(),
+        'user_database.db',
+      ),
+      version: 1,
+    );
+    final db = await database;
+
+    db.delete(
+      'user',
+    );
+  }
 }
