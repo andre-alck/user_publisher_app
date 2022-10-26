@@ -1,16 +1,16 @@
 # p_user_publisher
 
-A new Flutter project.
+Projeto Flutter que:
+
+1. cria uma base de dados;
+2. cria uma tabela 'user' na base de dados;
+3. adiciona informações incompletas de um usuário na tabela e
+4. envia sinal via AMQP na RK = user.name.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Para executar o projeto, em sua pasta, execute:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+flutter run
+```
