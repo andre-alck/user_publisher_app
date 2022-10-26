@@ -1,12 +1,12 @@
 class User {
-  final int? id;
-  final String name;
-  final int age;
+  final int id;
+  final String? name;
+  final int? age;
 
   User({
-    this.id,
-    required this.name,
-    required this.age,
+    required this.id,
+    this.name,
+    this.age,
   });
 
   Map<String, dynamic> toMap() {
@@ -19,6 +19,6 @@ class User {
 
   @override
   String toString() {
-    return 'Dog{id: $id, name: $name, age: $age}';
+    return 'User{id: $id, name: $name, age: $age}';
   }
 }
