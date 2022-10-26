@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:p_user_publisher/models/user.dart';
-import 'package:p_user_publisher/service/amqp_controller_service.dart';
-import 'package:p_user_publisher/service/database_service.dart';
+
+import 'pages/home_page.dart';
 
 void main() {
   runApp(
@@ -18,28 +17,6 @@ class MyApp extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    final database = DatabaseService();
-    final user = User(
-      age: 19,
-      name: 'André',
-    );
-    final amqpControllerService = AMQPControllerService();
-
-    return MaterialApp(
-      title: 'User Publisher',
-      home: Scaffold(
-        appBar: AppBar(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            database.populate(
-              user,
-            );
-            amqpControllerService.send(
-              user,
-            );
-          },
-        ),
-      ),
-    );
+    return const Home();
   }
 }
