@@ -5,7 +5,15 @@ class AMQPControllerService {
   Future<void> send(
     User user,
   ) async {
-    Client client = Client();
+    ConnectionSettings connectionSettings = ConnectionSettings(
+      maxConnectionAttempts: 5,
+      host: '10.0.2.2',
+      port: 5672,
+    );
+
+    Client client = Client(
+      settings: connectionSettings,
+    );
     Channel channel = await client.channel();
     Exchange exchange = await channel.exchange(
       "logs",
